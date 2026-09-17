@@ -143,18 +143,24 @@ header {
 
 .nav-links {
   display: flex;
-  gap: 34px;
-  font-size: 14px;
+  gap: 24px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .nav-links a { opacity: 0.85; transition: opacity 0.15s ease, color 0.15s ease; }
 .nav-links a:hover { opacity: 1; color: var(--orange-400); }
 
-.nav-cta { display: flex; align-items: center; gap: 16px; }
-.nav-cta .btn { padding: 11px 22px; font-size: 13px; }
+.nav-cta { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.nav-cta .btn { padding: 11px 20px; font-size: 13px; white-space: nowrap; }
+.nav-cta .btn-outline { display: none; }
+
+@media (min-width: 1240px) {
+  .nav-cta .btn-outline { display: inline-flex; }
+}
 
 .burger {
   display: none;
