@@ -368,6 +368,8 @@ section { padding: 110px 0; position: relative; }
 .card-features li { font-size: 14px; color: var(--cream-dim); display: flex; gap: 10px; align-items: flex-start; }
 .card-features li svg { flex-shrink: 0; margin-top: 2px; color: var(--orange-400); }
 
+.buy-row { display: grid; gap: 10px; }
+
 /* ===== Gallery ===== */
 .gallery-grid {
   display: grid;
