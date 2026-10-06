@@ -339,6 +339,10 @@
     </div>
     <div class="reveal">
       <form class="contact-form" id="contactForm">
+        <input type="hidden" name="access_key" value="f17d32c4-14e5-41b4-9cdb-bd2d566f4232" />
+        <input type="hidden" name="subject" value="New Apex Training website inquiry" />
+        <input type="hidden" name="from_name" value="Apex Training Website" />
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" />
         <div class="form-row">
           <input type="text" name="name" placeholder="Full name" required />
           <input type="tel" name="phone" placeholder="Phone number" required />
@@ -353,6 +357,7 @@
         </select>
         <textarea name="message" placeholder="Tell me a bit about your goals..."></textarea>
         <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
       </form>
     </div>
   </div>

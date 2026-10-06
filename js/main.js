@@ -58,19 +58,42 @@ document.querySelectorAll('.faq-item').forEach(item => {
   });
 });
 
-// Contact form — placeholder submit handler (no backend wired yet)
+// Contact form (sent via Web3Forms, delivered to Lex's email)
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
+  const status = document.getElementById('formStatus');
+  const btn = contactForm.querySelector('button[type="submit"]');
+  const original = btn.textContent;
+
+  const show = (msg, ok) => {
+    status.textContent = msg;
+    status.className = 'form-status ' + (ok ? 'ok' : 'err');
+  };
+
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn = contactForm.querySelector('button[type="submit"]');
-    const original = btn.textContent;
-    btn.textContent = 'Message Sent!';
+    btn.textContent = 'Sending...';
     btn.disabled = true;
-    setTimeout(() => {
-      contactForm.reset();
-      btn.textContent = original;
-      btn.disabled = false;
-    }, 2500);
+    status.className = 'form-status';
+    status.textContent = '';
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(contactForm)))
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        show("Thanks! Your message was sent. I'll get back to you soon.", true);
+        contactForm.reset();
+      } else {
+        show('Something went wrong. Please call or text 859-640-6825 instead.', false);
+      }
+    } catch (err) {
+      show('Could not send right now. Please call or text 859-640-6825 instead.', false);
+    }
+    btn.textContent = original;
+    btn.disabled = false;
   });
 }
