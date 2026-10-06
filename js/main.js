@@ -31,7 +31,6 @@ document.querySelectorAll('.gallery-item[data-video]').forEach(item => {
   const video = item.querySelector('video');
   item.addEventListener('click', () => {
     if (video.paused) {
-      video.muted = false;
       video.play();
       item.classList.add('playing');
     } else {
